@@ -1,0 +1,13 @@
+package presentation;
+
+public enum CategoriePoidsHomme {
+	POIDS_MI_MOUCHES,       // moins de 49 kg
+    POIDS_MOUCHES,          // entre 49 et 52 kg
+    POIDS_COQS,             // entre 52 et 56 kg
+    POIDS_LEGERS,           // entre 56 et 60 kg
+    POIDS_SUPER_LEGERS,     // entre 60 et 64 kg
+    POIDS_WELTERS,          // entre 64 et 69 kg
+    POIDS_MOYENS,           // entre 69 et 75 kg
+    POIDS_MI_LOURDS,        // entre 75 et 91 kg
+    POIDS_LOURDS
+}

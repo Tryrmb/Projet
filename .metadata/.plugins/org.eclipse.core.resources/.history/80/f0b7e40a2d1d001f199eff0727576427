@@ -1,0 +1,28 @@
+package Services;
+
+import presentation.Combattant;
+import presentation.Club;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class GestionSportif {
+    private Map<String, String> identifiants;
+
+    public GestionSportif() {
+        identifiants = new HashMap<>();
+        // Remplissez la map avec les identifiants des sportifs pour la vérification
+        // Ex : identifiants.put("nomUtilisateur", "motDePasse");
+        identifiants.put("john.berger", "password123");
+        identifiants.put("maxime.thomas", "password456");
+        // Ajoutez les autres identifiants
+    }
+
+    public boolean verifierIdentite(String nomUtilisateur, String motDePasse) {
+        return motDePasse.equals(identifiants.get(nomUtilisateur));
+    }
+
+    public void mettreAJourInfo(Combattant combattant, String champ, String nouvelleValeur) {
+        combattant.mettreAJourInfo(champ, nouvelleValeur);
+    }
+}

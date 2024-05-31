@@ -1,0 +1,69 @@
+package Services;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class DataAccesObject {
+
+    public static void updateInfo(String file, String id, String field, String value) {
+        String response = executeOCaml("update_info", file, id, field, value);
+        handleResponse(response);
+    }
+
+    public static boolean verifyUser(String file, String id, String password) {
+        String response = executeOCaml("verify_user", file, id, password);
+        return response.contains("Identifiants corrects");
+    }
+
+    public static void addPerformance(String file, String id, String adversaire, String date, String resultat, String type_victoire) {
+        String response = executeOCaml("add_performance", file, id, adversaire, date, resultat, type_victoire);
+        handleResponse(response);
+    }
+
+    public static void addCombatDetails(String file, String id, String coups_reussis, String coups_manques, String types_coups, String zones_touchees) {
+        String response = executeOCaml("add_combat_details", file, id, coups_reussis, coups_manques, types_coups, zones_touchees);
+        handleResponse(response);
+    }
+
+    public static double calculatePercentages(String file, String id) {
+        String response = executeOCaml("calculate_percentages", file, id);
+        return Double.parseDouble(response.trim());
+    }
+
+    private static String executeOCaml(String... command) {
+        try {
+            // Assuming the OCaml executables are in the same directory
+            List<String> cmdList = new ArrayList<>();
+            cmdList.add("./" + command[0]); // Prefix with "./" for Unix-like systems
+            cmdList.addAll(Arrays.asList(command).subList(1, command.length));
+            ProcessBuilder pb = new ProcessBuilder(cmdList);
+            pb.directory(new File(".")); // Set the working directory if needed
+            Process process = pb.start();
+
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                StringBuilder output = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    output.append(line).append("\n");
+                }
+                process.waitFor();
+                return output.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Execution failed: " + e.getMessage();
+        }
+    }
+
+    private static void handleResponse(String response) {
+        if (response.contains("Erreur") || response.contains("error")) {
+            throw new RuntimeException("OCaml script execution failed: " + response);
+        } else {
+            System.out.println(response);
+        }
+    }
+}

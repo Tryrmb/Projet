@@ -1,0 +1,58 @@
+package Services;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class DataAccesObject {
+
+    public static void updateInfo(String file, String id, String field, String value) {
+        executeOCaml("UpdateInfo", file, id, field, value);
+    }
+
+    public static boolean verifyUser(String file, String id, String password) {
+        String result = executeOCaml("VerifyUser", file, id, password);
+        return Boolean.parseBoolean(result.trim());
+    }
+
+    public static void addPerformance(String file, String id, String adversaire, String date, String resultat, String type_victoire) {
+        executeOCaml("AddPerformance", file, id, adversaire, date, resultat, type_victoire);
+    }
+
+    public static void addCombatDetails(String file, String id, String coups_reussis, String coups_manques, String types_coups, String zones_touchees) {
+        executeOCaml("AddCombatDetails", file, id, coups_reussis, coups_manques, types_coups, zones_touchees);
+    }
+
+    public static double calculatePercentages(String file, String id) {
+        String result = executeOCaml("CalculatePercentages", file, id);
+        return Double.parseDouble(result.trim());
+    }
+
+    private static String executeOCaml(String... command) {
+        try {
+            List<String> cmdList = new ArrayList<>();
+            cmdList.add("ocamlrun");
+            cmdList.add("crud_csv");
+            cmdList.addAll(Arrays.asList(command));
+            ProcessBuilder pb = new ProcessBuilder(cmdList);
+            Process process = pb.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            StringBuilder output = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+            int exitCode = process.waitFor();
+            if (exitCode != 0) {
+                throw new RuntimeException("Erreur lors de l'exécution de la commande OCaml: " + output.toString());
+            }
+            return output.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+}

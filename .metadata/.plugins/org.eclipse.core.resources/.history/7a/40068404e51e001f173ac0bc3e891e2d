@@ -1,0 +1,52 @@
+package Services;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class DataAccesObject {
+
+    public static void updateInfo(String id, String champ, String valeur) {
+        executeOCaml("gestion_sportif", "UpdateInfo", id, champ, valeur);
+    }
+
+    public static boolean verifyUser(String id, String password) {
+        String result = executeOCaml("gestion_sportif", "VerifyUser", id, password);
+        return Boolean.parseBoolean(result.trim());
+    }
+
+    public static void addPerformance(String id, String adversaire, String date, String resultat, String type_victoire) {
+        executeOCaml("gestion_combat", "AddPerformance", id, adversaire, date, resultat, type_victoire);
+    }
+
+    public static void addCombatDetails(String id, String coups_reussis, String coups_manques, String types_coups, String zones_touchees) {
+        executeOCaml("gestion_combat", "AddCombatDetails", id, coups_reussis, coups_manques, types_coups, zones_touchees);
+    }
+
+    public static double calculatePercentages(String id) {
+        String result = executeOCaml("stats", "CalculatePercentages", id);
+        return Double.parseDouble(result.trim());
+    }
+
+    private static String executeOCaml(String... command) {
+        try {
+            List<String> cmdList = new ArrayList<>();
+            cmdList.addAll(Arrays.asList(command));
+            ProcessBuilder pb = new ProcessBuilder(cmdList);
+            Process process = pb.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            StringBuilder output = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+            process.waitFor();
+            return output.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+}

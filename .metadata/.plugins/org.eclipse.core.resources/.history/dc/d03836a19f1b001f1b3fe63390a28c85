@@ -1,0 +1,28 @@
+package Controller;
+
+import presentation.Niveau;
+import presentation.Sexe;
+import presentation.Tournoi;
+import Services.GestionTournoi;
+import Services.GestionTournoiImplement;
+
+public class TournoiController {
+	 private GestionTournoi gestionTournoi = new GestionTournoiImplement();
+
+	    public Tournoi creerTournoi(String categoriePoids, Sexe sexe, Niveau niveau) {
+	        return gestionTournoi.creerTournoi(categoriePoids, sexe, niveau);
+	    }
+
+	    public void supprimerTournoi(Tournoi tournoi) {
+	        gestionTournoi.supprimerTournoi(tournoi);
+	    }
+
+	    public void planifierCombats(Tournoi tournoi) {
+	        tournoi.planifierCombats();
+	    }
+
+	    public void enregistrerResultats(Tournoi tournoi) {
+	        tournoi.enregistrerResultats();
+	    }
+}
+

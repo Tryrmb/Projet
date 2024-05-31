@@ -1,0 +1,9 @@
+package Services;
+
+import presentation.Combattant;
+
+public interface GestionCombattant {
+    void ajouterCombattant(Combattant combattant);
+    void supprimerCombattant(Combattant combattant);
+    void modifierCombattant(Combattant combattant);
+}

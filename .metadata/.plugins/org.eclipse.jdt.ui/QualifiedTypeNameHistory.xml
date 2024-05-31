@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="Domain.Participant"/>
+    <fullyQualifiedTypeName name="Domain.Combattant"/>
+    <fullyQualifiedTypeName name="Domain.Combat"/>
+    <fullyQualifiedTypeName name="enums.ResultatCombat"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="enums.CatPoids"/>
+    <fullyQualifiedTypeName name="enums.SexeCombattant"/>
+    <fullyQualifiedTypeName name="Controller.CombattantController"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="recompense.Recompense"/>
+</qualifiedTypeNameHistroy>

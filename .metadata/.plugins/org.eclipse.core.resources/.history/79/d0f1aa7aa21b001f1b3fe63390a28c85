@@ -1,0 +1,14 @@
+package presentation;
+
+public enum CategoriePoidsFemme {
+	POIDS_MI_MOUCHES,     // moins de 48 kg
+    POIDS_MOUCHES,        // entre 48 et 51 kg (catégorie olympique)
+    POIDS_COQS,           // entre 51 et 54 kg
+    POIDS_PLUMES,         // entre 54 et 57 kg
+    POIDS_LEGERS,         // entre 57 et 60 kg (catégorie olympique)
+    POIDS_SUPER_LEGERS,   // entre 60 et 64 kg
+    POIDS_WELTERS,        // entre 64 et 69 kg
+    POIDS_MOYENS,         // entre 69 et 75 kg (catégorie olympique)
+    POIDS_MI_LOURDS,      // entre 75 et 81 kg
+    POIDS_LOURDS 
+}

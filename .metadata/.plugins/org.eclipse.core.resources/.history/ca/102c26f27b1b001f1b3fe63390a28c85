@@ -1,0 +1,60 @@
+package presentation;
+
+
+import java.util.Random;
+
+public class Combat {
+    private Combattant combattant1;
+    private Combattant combattant2;
+    private Combattant vainqueur;
+    private String resultat;
+
+    public Combat(Combattant combattant1, Combattant combattant2) {
+        this.combattant1 = combattant1;
+        this.combattant2 = combattant2;
+    }
+
+    public void simulerCombat() {
+        // Logique de simulation du combat
+        Random rand = new Random();
+        int score1 = combattant1.calculerScore() + rand.nextInt(10);
+        int score2 = combattant2.calculerScore() + rand.nextInt(10);
+
+        if (score1 > score2) {
+            vainqueur = combattant1;
+            resultat = combattant1.getNom() + " a gagné contre " + combattant2.getNom();
+        } else if (score2 > score1) {
+            vainqueur = combattant2;
+            resultat = combattant2.getNom() + " a gagné contre " + combattant1.getNom();
+        } else {
+            // En cas d'égalité, déterminer aléatoirement le vainqueur
+            vainqueur = rand.nextBoolean() ? combattant1 : combattant2;
+            resultat = "Match nul, " + vainqueur.getNom() + " a été choisi comme vainqueur.";
+        }
+    }
+
+    public Combattant getVainqueur() {
+        return vainqueur;
+    }
+
+    public String getResultat() {
+        return resultat;
+    }
+
+    // Getters et setters si nécessaire
+    public Combattant getCombattant1() {
+        return combattant1;
+    }
+
+    public void setCombattant1(Combattant combattant1) {
+        this.combattant1 = combattant1;
+    }
+
+    public Combattant getCombattant2() {
+        return combattant2;
+    }
+
+    public void setCombattant2(Combattant combattant2) {
+        this.combattant2 = combattant2;
+    }
+}

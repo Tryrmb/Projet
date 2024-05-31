@@ -1,0 +1,59 @@
+package Services;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DataAccesObject {
+
+    public static void create(String file, String... data) {
+        executeOCaml("Create", file, data);
+    }
+
+    public static void read(String file) {
+        executeOCaml("Read", file);
+    }
+
+    public static void update(String file, String id, String... data) {
+        executeOCaml("Update", file, id, data);
+    }
+
+    public static void delete(String file, String id) {
+        executeOCaml("Delete", file, id);
+    }
+
+    private static void executeOCaml(String operation, String file, String... data) {
+        try {
+            List<String> command = new ArrayList<>();
+            command.add("ocaml");
+            command.add("crud_csv.ml");
+            command.add(operation);
+            command.add(file);
+            for (String d : data) {
+                command.add(d);
+            }
+
+            ProcessBuilder pb = new ProcessBuilder(command);
+            Process process = pb.start();
+
+            // Reading the output from the process
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            // Reading the error stream
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            while ((line = errorReader.readLine()) != null) {
+                System.err.println(line);
+            }
+
+            process.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+

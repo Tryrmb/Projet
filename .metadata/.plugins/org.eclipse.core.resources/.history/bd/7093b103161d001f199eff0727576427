@@ -1,0 +1,36 @@
+package Services;
+
+import presentation.Combattant;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+
+public class CSVWRITER {
+
+    public static void writeCombattantsToCSV(String fileName, List<Combattant> combattants) {
+        try (FileWriter writer = new FileWriter(fileName)) {
+            // Write header
+            writer.append("Nom,Taille,Poids,Palmares,Sexe,Club,Vitesse,Puissance,Endurance,Niveau,Victoires,Defaites,Nuls\n");
+
+            // Write data
+            for (Combattant combattant : combattants) {
+                writer.append(combattant.getNom()).append(",")
+                      .append(String.valueOf(combattant.getTaille())).append(",")
+                      .append(String.valueOf(combattant.getPoids())).append(",")
+                      .append(combattant.getPalmares()).append(",")
+                      .append(combattant.getSexe().name()).append(",")
+                      .append(combattant.getClub().name()).append(",")
+                      .append(String.valueOf(combattant.getVitesse())).append(",")
+                      .append(String.valueOf(combattant.getPuissance())).append(",")
+                      .append(String.valueOf(combattant.getEndurance())).append(",")
+                      .append(combattant.getNiveau().name()).append(",")
+                      .append(String.valueOf(combattant.getVictoires())).append(",")
+                      .append(String.valueOf(combattant.getDefaites())).append(",")
+                      .append(String.valueOf(combattant.getNuls())).append("\n");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

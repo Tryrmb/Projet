@@ -1,0 +1,41 @@
+package presentation;
+
+public class ReglesTournoi {
+    public static void afficherRegles(Niveau niveau) {
+        switch (niveau) {
+            case PROFESSIONNEL:
+                afficherReglesProfessionnel();
+                break;
+            case AMATEUR:
+                afficherReglesAmateur();
+                break;
+            case DEBUTANT:
+                afficherReglesDebutant();
+                break;
+        }
+    }
+
+    private static void afficherReglesProfessionnel() {
+        System.out.println("Règles du tournoi professionnel :");
+        System.out.println("- Les combats durent 12 rounds de 3 minutes.");
+        System.out.println("- Les combattants doivent respecter les règles de l'AIBA.");
+        System.out.println("- L'utilisation de gants homologués est obligatoire.");
+        // Ajouter d'autres règles ici
+    }
+
+    private static void afficherReglesAmateur() {
+        System.out.println("Règles du tournoi amateur :");
+        System.out.println("- Les combats durent 3 rounds de 3 minutes.");
+        System.out.println("- Les combattants doivent porter des casques de protection.");
+        System.out.println("- Les points sont attribués pour les coups portés.");
+        // Ajouter d'autres règles ici
+    }
+
+    private static void afficherReglesDebutant() {
+        System.out.println("Règles du tournoi débutant :");
+        System.out.println("- Les combats durent 3 rounds de 2 minutes.");
+        System.out.println("- Les combattants doivent porter des casques et des protège-dents.");
+        System.out.println("- Les points sont attribués pour les coups portés.");
+        // Ajouter d'autres règles ici
+    }
+}

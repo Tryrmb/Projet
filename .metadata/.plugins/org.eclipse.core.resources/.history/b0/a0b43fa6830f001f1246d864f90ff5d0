@@ -1,0 +1,25 @@
+package inscription;
+
+import Gestion.Combattant;
+
+public class Eligibilite {
+    public static boolean aCasque(Combattant combattant) {
+        // Logique pour vérifier si le combattant a un casque
+        return combattant.isCasque();
+    }
+
+    public static boolean aProtegeDents(Combattant combattant) {
+        // Logique pour vérifier si le combattant a un protège-dents
+        return combattant.isProtegeDents();
+    }
+
+    public static boolean aLicence(Combattant combattant) {
+        // Logique pour vérifier si le combattant a une licence
+        return combattant.isLicence();
+    }
+
+    public static boolean aAssuranceMaladie(Combattant combattant) {
+        // Logique pour vérifier si le combattant a une assurance maladie
+        return combattant.isAssuranceMaladie();
+    }
+}

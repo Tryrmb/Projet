@@ -1,0 +1,22 @@
+package Main;
+
+import Controller.CombattantController;
+import Controller.TournoiController;
+import presentation.*;
+
+public class main {
+    public static void main(String[] args) {
+        CombattantController combattantController = new CombattantController();
+        TournoiController tournoiController = new TournoiController();
+
+        Combattant combattant1 = new Combattant("John Doe", 180, 75, "10-2-0", Sexe.HOMME, Club.BOXINGCLUBMURET, 90, 85, 80, Niveau.AMATEUR);
+        Combattant combattant2 = new Combattant("Jane Doe", 170, 60, "15-1-0", Sexe.FEMME, Club.BOXINGCENTERTOULOUSE, 88, 90, 85, Niveau.PROFESSIONNEL);
+
+        combattantController.ajouterCombattant(combattant1);
+        combattantController.ajouterCombattant(combattant2);
+
+        Tournoi tournoi = tournoiController.creerTournoi("Poids Moyens", Sexe.HOMME, Niveau.AMATEUR);
+        tournoiController.planifierCombats(tournoi);
+        tournoiController.enregistrerResultats(tournoi);
+    }
+}

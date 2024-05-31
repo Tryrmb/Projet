@@ -1,0 +1,97 @@
+package Main;
+
+import Controller.CombattantController;
+import Controller.TournoiController;
+import presentation.*;
+import java.util.Scanner;
+
+
+public class main {
+    public static void main(String[] args) {
+    	CombattantController combattantController = new CombattantController();
+        TournoiController tournoiController = new TournoiController();
+
+        // Message d'accueil
+        System.out.println("Bienvenue au Championnat d'Occitanie !");
+
+        // Ajout de 16 combattants en poids moyens, homme, amateur
+        Combattant combattant1 = new Combattant("John Doe", 180, 75, "10-2-0", Sexe.HOMME, Club.NOBLEARTPEPIEUXOIS, 90, 85, 80, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant2 = new Combattant("Max Smith", 175, 70, "8-3-1", Sexe.HOMME, Club.BCNARBONNAIS, 85, 80, 90, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant3 = new Combattant("Bruce Wayne", 185, 80, "20-0-0", Sexe.HOMME, Club.NIMESBOXE, 95, 90, 88, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant4 = new Combattant("Clark Kent", 178, 72, "15-1-0", Sexe.HOMME, Club.CARCASSONNEBOXING, 90, 85, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant5 = new Combattant("Peter Parker", 182, 78, "12-2-0", Sexe.HOMME, Club.BCARIEGEOIS, 88, 84, 82, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant6 = new Combattant("Steve Rogers", 180, 75, "10-3-1", Sexe.HOMME, Club.BOXINGCLUBALESIEN, 92, 88, 87, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant7 = new Combattant("Tony Stark", 175, 70, "9-4-0", Sexe.HOMME, Club.CAHORSBOXE, 85, 82, 80, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant8 = new Combattant("Bruce Banner", 185, 80, "14-2-0", Sexe.HOMME, Club.BCTOULOUSAIN, 91, 89, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant9 = new Combattant("Barry Allen", 178, 72, "11-3-0", Sexe.HOMME, Club.SPORTINGBOXECUGNAUX, 90, 86, 84, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant10 = new Combattant("Arthur Curry", 182, 78, "13-1-0", Sexe.HOMME, Club.BLAGNACBOXINGCLUB, 89, 87, 83, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant11 = new Combattant("Victor Stone", 180, 75, "10-4-0", Sexe.HOMME, Club.BOXINGCLUBBAGATELLE, 88, 85, 82, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant12 = new Combattant("Oliver Queen", 175, 70, "9-3-1", Sexe.HOMME, Club.BOXINGCLUBROQUETTOIS, 87, 84, 81, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant13 = new Combattant("Hal Jordan", 185, 80, "15-1-0", Sexe.HOMME, Club.BOXINGCLUBAUTERIVAIN, 92, 89, 88, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant14 = new Combattant("John Stewart", 178, 72, "12-3-0", Sexe.HOMME, Club.BOXINGCLUBMURET, 89, 86, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant15 = new Combattant("J'onn J'onzz", 182, 78, "14-2-0", Sexe.HOMME, Club.SAINTLYSOLYMPIQUEBOXE, 91, 87, 84, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant16 = new Combattant("Lex Luthor", 180, 75, "11-4-0", Sexe.HOMME, Club.BOXINGCENTERTOULOUSE, 90, 85, 82, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+
+        // Ajouter les combattants au contrôleur des combattants
+        combattantController.ajouterCombattant(combattant1);
+        combattantController.ajouterCombattant(combattant2);
+        combattantController.ajouterCombattant(combattant3);
+        combattantController.ajouterCombattant(combattant4);
+        combattantController.ajouterCombattant(combattant5);
+        combattantController.ajouterCombattant(combattant6);
+        combattantController.ajouterCombattant(combattant7);
+        combattantController.ajouterCombattant(combattant8);
+        combattantController.ajouterCombattant(combattant9);
+        combattantController.ajouterCombattant(combattant10);
+        combattantController.ajouterCombattant(combattant11);
+        combattantController.ajouterCombattant(combattant12);
+        combattantController.ajouterCombattant(combattant13);
+        combattantController.ajouterCombattant(combattant14);
+        combattantController.ajouterCombattant(combattant15);
+        combattantController.ajouterCombattant(combattant16);
+
+        // Création d'un tournoi
+        Tournoi tournoi = tournoiController.creerTournoi("POIDS_MOYENS", Sexe.HOMME, Niveau.AMATEUR);
+
+        // Ajout des combattants au tournoi
+        tournoi.ajouterCombattant(combattant1);
+        tournoi.ajouterCombattant(combattant2);
+        tournoi.ajouterCombattant(combattant3);
+        tournoi.ajouterCombattant(combattant4);
+        tournoi.ajouterCombattant(combattant5);
+        tournoi.ajouterCombattant(combattant6);
+        tournoi.ajouterCombattant(combattant7);
+        tournoi.ajouterCombattant(combattant8);
+        tournoi.ajouterCombattant(combattant9);
+        tournoi.ajouterCombattant(combattant10);
+        tournoi.ajouterCombattant(combattant11);
+        tournoi.ajouterCombattant(combattant12);
+        tournoi.ajouterCombattant(combattant13);
+        tournoi.ajouterCombattant(combattant14);
+        tournoi.ajouterCombattant(combattant15);
+        tournoi.ajouterCombattant(combattant16);
+
+        // Classer les combattants
+        System.out.println("\nLes combattants du tournoi " + tournoi.getCategoriePoids() + " " + tournoi.getSexe() + " " + tournoi.getNiveau() + " sont :");
+        tournoi.classerCombattants();
+
+        // Planification des combats et enregistrement des résultats
+        tournoiController.planifierCombats(tournoi);
+        tournoiController.enregistrerResultats(tournoi);
+
+        // Demander à l'utilisateur quels résultats de tournoi l'intéressent
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nQuels résultats de tournoi vous intéressent ? (Par exemple : 'POIDS_MOYENS HOMME AMATEUR')");
+        String input = scanner.nextLine();
+
+        if (input.equalsIgnoreCase("POIDS_MOYENS HOMME AMATEUR")) {
+            System.out.println("\nRésultats du tournoi POIDS_MOYENS HOMME AMATEUR :");
+            tournoi.afficherResultats();
+        } else {
+            System.out.println("Tournoi non trouvé ou résultats indisponibles.");
+        }
+
+        scanner.close();
+    }
+}
+

@@ -1,0 +1,13 @@
+package Services;
+
+import presentation.Combattant;
+import Except.CombattantException;
+import java.util.List;
+
+
+public interface GestionCombattant {
+    void ajouterCombattant(Combattant combattant);
+    void supprimerCombattant(Combattant combattant);
+    void modifierCombattant(Combattant combattant) throws CombattantException;
+    List<Combattant> getCombattants();
+}

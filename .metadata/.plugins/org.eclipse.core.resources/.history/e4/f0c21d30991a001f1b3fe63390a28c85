@@ -1,0 +1,38 @@
+package Main;
+
+import Controller.CombattantController;
+import Controller.TournoiController;
+import presentation.*;
+
+public class main {
+    public static void main(String[] args) {
+    	CombattantController combattantController = new CombattantController();
+        TournoiController tournoiController = new TournoiController();
+
+        // Ajout de plusieurs combattants avec les clubs mis à jour
+        Combattant combattant1 = new Combattant("John Doe", 180, 75, "10-2-0", Sexe.HOMME, Club.NOBLEARTPEPIEUXOIS, 90, 85, 80, Niveau.AMATEUR);
+        Combattant combattant2 = new Combattant("Jane Doe", 170, 60, "15-1-0", Sexe.FEMME, Club.CARCASSONNEBOXING, 88, 90, 85, Niveau.PROFESSIONNEL);
+        Combattant combattant3 = new Combattant("Max Smith", 175, 70, "8-3-1", Sexe.HOMME, Club.BCNARBONNAIS, 85, 80, 90, Niveau.AMATEUR);
+        Combattant combattant4 = new Combattant("Sara Connor", 165, 55, "12-2-1", Sexe.FEMME, Club.BCARIEGEOIS, 92, 88, 83, Niveau.AMATEUR);
+        Combattant combattant5 = new Combattant("Bruce Wayne", 185, 80, "20-0-0", Sexe.HOMME, Club.NIMESBOXE, 95, 90, 88, Niveau.PROFESSIONNEL);
+        Combattant combattant6 = new Combattant("Diana Prince", 172, 62, "18-1-0", Sexe.FEMME, Club.BOXINGCLUBEBAM, 90, 92, 89, Niveau.PROFESSIONNEL);
+
+        combattantController.ajouterCombattant(combattant1);
+        combattantController.ajouterCombattant(combattant2);
+        combattantController.ajouterCombattant(combattant3);
+        combattantController.ajouterCombattant(combattant4);
+        combattantController.ajouterCombattant(combattant5);
+        combattantController.ajouterCombattant(combattant6);
+
+        // Création d'un tournoi
+        Tournoi tournoi = tournoiController.creerTournoi("Poids Moyens", Sexe.HOMME, Niveau.AMATEUR);
+
+        // Ajout des combattants au tournoi
+        tournoi.ajouterCombattant(combattant1);
+        tournoi.ajouterCombattant(combattant3);
+
+        // Planification des combats et enregistrement des résultats
+        tournoiController.planifierCombats(tournoi);
+        tournoiController.enregistrerResultats(tournoi);
+    }
+}

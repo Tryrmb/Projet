@@ -1,0 +1,172 @@
+package presentation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Tournoi {
+    private String categoriePoids;
+    private Sexe sexe;
+    private Niveau niveau;
+    private List<Combattant> combattants;
+    private List<Combat> combats;
+    private List<Combattant> vainqueurs;
+
+    public Tournoi(String categoriePoids, Sexe sexe, Niveau niveau) {
+        this.categoriePoids = categoriePoids;
+        this.sexe = sexe;
+        this.niveau = niveau;
+        this.combattants = new ArrayList<>();
+        this.combats = new ArrayList<>();
+        this.vainqueurs = new ArrayList<>();
+    }
+
+    public void ajouterCombattant(Combattant combattant) {
+        if (combattant.getNiveau() == this.niveau && combattant.getSexe() == this.sexe) {
+            boolean categorieValide = false;
+            if (this.sexe == Sexe.HOMME && combattant.getCategorieDePoidsHomme() != null && combattant.getCategorieDePoidsHomme().name().equals(this.categoriePoids)) {
+                categorieValide = true;
+            } else if (this.sexe == Sexe.FEMME && combattant.getCategorieDePoidsFemme() != null && combattant.getCategorieDePoidsFemme().name().equals(this.categoriePoids)) {
+                categorieValide = true;
+            }
+
+            if (categorieValide) {
+                combattants.add(combattant);
+                System.out.println("Combattant ajouté: " + combattant.getNom());
+            } else {
+                System.out.println("Le combattant ne correspond pas aux critères de la catégorie de poids du tournoi.");
+            }
+        } else {
+            System.out.println("Le combattant ne correspond pas aux critères de sexe ou de niveau du tournoi.");
+        }
+    }
+
+    public void planifierCombats() {
+        // Logique de planification des combats
+        if (combattants.size() < 2) {
+            System.out.println("Pas assez de combattants pour organiser des combats.");
+            return;
+        }
+
+        List<Combattant> round = new ArrayList<>(combattants);
+        while (round.size() > 1) {
+            List<Combattant> nextRound = new ArrayList<>();
+            for (int i = 0; i < round.size(); i += 2) {
+                Combat combat = new Combat(round.get(i), round.get(i + 1));
+                combats.add(combat);
+                combat.simulerCombat();
+                nextRound.add(combat.getVainqueur());
+            }
+            round = nextRound;
+        }
+        if (!round.isEmpty()) {
+            vainqueurs.add(round.get(0));
+        }
+    }
+
+    public void afficherTableau() {
+        afficherTableauRec(combattants, 0);
+    }
+
+    private void afficherTableauRec(List<Combattant> round, int depth) {
+        if (round.size() <= 1) {
+            return;
+        }
+        List<Combattant> nextRound = new ArrayList<>();
+        for (int i = 0; i < round.size(); i += 2) {
+            Combat combat = new Combat(round.get(i), round.get(i + 1));
+            combats.add(combat);
+            combat.simulerCombat();
+            nextRound.add(combat.getVainqueur());
+            System.out.println(getIndent(depth) + round.get(i).getNom() + " vs " + round.get(i + 1).getNom() + " -> " + combat.getVainqueur().getNom());
+        }
+        afficherTableauRec(nextRound, depth + 1);
+    }
+
+    private String getIndent(int depth) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < depth; i++) {
+            sb.append("  ");
+        }
+        return sb.toString();
+    }
+
+    public void enregistrerResultats() {
+        // Logique d'enregistrement des résultats
+        for (Combat combat : combats) {
+            combat.simulerCombat();
+            Combattant gagnant = combat.getVainqueur();
+            if (gagnant != null) {
+                vainqueurs.add(gagnant);
+            }
+        }
+
+        // Déterminer le vainqueur final
+        if (vainqueurs.size() > 1) {
+            Combattant champion = organiserFinale(vainqueurs);
+            System.out.println("Le champion du tournoi est : " + champion.getNom());
+        } else if (vainqueurs.size() == 1) {
+            System.out.println("Le champion du tournoi est : " + vainqueurs.get(0).getNom());
+        } else {
+            System.out.println("Aucun vainqueur déterminé.");
+        }
+    }
+
+    private Combattant organiserFinale(List<Combattant> vainqueurs) {
+        // Logique pour organiser la finale entre les vainqueurs des poules
+        if (vainqueurs.size() < 2) {
+            return null;
+        }
+        Combattant finaliste1 = vainqueurs.get(0);
+        Combattant finaliste2 = vainqueurs.get(1);
+        Combat finale = new Combat(finaliste1, finaliste2);
+        finale.simulerCombat();
+        return finale.getVainqueur();
+    }
+
+    public void afficherResultats() {
+        // Afficher les résultats des combats
+        for (Combat combat : combats) {
+            System.out.println(combat.getResultat());
+        }
+        if (!vainqueurs.isEmpty()) {
+            System.out.println("Le champion du tournoi est : " + vainqueurs.get(0).getNom());
+        }
+    }
+
+    // Getters and setters for attributes if needed
+    public String getCategoriePoids() {
+        return categoriePoids;
+    }
+
+    public void setCategoriePoids(String categoriePoids) {
+        this.categoriePoids = categoriePoids;
+    }
+
+    public Sexe getSexe() {
+        return sexe;
+    }
+
+    public void setSexe(Sexe sexe) {
+        this.sexe = sexe;
+    }
+
+    public Niveau getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
+    }
+
+    public List<Combattant> getCombattants() {
+        return combattants;
+    }
+
+    public List<Combat> getCombats() {
+        return combats;
+    }
+
+    public List<Combattant> getVainqueurs() {
+        return vainqueurs;
+    }
+}

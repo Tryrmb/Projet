@@ -1,0 +1,5 @@
+
+ç	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.b 992a0f0542384f1ee5ef51b7cf4ae6c4h
+v	java:S125"<This block of commented-out lines of code should be removed.8í›â€˚1b bcfd6236063414aeb69bffa6752e1571h
+i
+java:S1128".Remove this unused import 'presentation.Club'.8—”ª›˚1b 3a68d7aeda9ceae4ec80ad91d78f97cch

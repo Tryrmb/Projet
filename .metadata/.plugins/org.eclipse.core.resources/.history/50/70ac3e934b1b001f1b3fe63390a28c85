@@ -1,0 +1,22 @@
+package Controller;
+
+import presentation.Combattant;
+import Except.CombattantException;
+import Services.GestionCombattant;
+import Services.GestionCombattantsImplement;
+
+public class CombattantController {
+    private GestionCombattant gestionCombattants = new GestionCombattantsImplement();
+
+    public void ajouterCombattant(Combattant combattant) {
+        gestionCombattants.ajouterCombattant(combattant);
+    }
+
+    public void supprimerCombattant(Combattant combattant) {
+        gestionCombattants.supprimerCombattant(combattant);
+    }
+
+    public void modifierCombattant(Combattant combattant) throws CombattantException {
+        gestionCombattants.modifierCombattant(combattant);
+    }
+}

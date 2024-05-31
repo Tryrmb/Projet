@@ -1,0 +1,49 @@
+package Services;
+
+import presentation.Combattant;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class GestionSportif {
+	private Map<String, String> identifiants;
+
+    public GestionSportif() {
+        identifiants = new HashMap<>();
+        // Stockez les mots de passe hachés
+        identifiants.put("john.berger", hashPassword("password123"));
+        identifiants.put("maxime.thomas", hashPassword("password456"));
+    }
+
+    public boolean verifierIdentite(String nomUtilisateur, String motDePasse) {
+        String hashedPassword = identifiants.get(nomUtilisateur);
+        return hashedPassword != null && hashedPassword.equals(hashPassword(motDePasse));
+    }
+
+    public void mettreAJourInfo(Combattant combattant, String champ, String nouvelleValeur) {
+        combattant.mettreAJourInfo(champ, nouvelleValeur);
+    }
+
+    public void sauvegarderCombattants(List<Combattant> combattants) {
+        CSVWRITER.writeCombattantsToCSV("combattants.csv", combattants);
+    }
+
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Erreur lors du hachage du mot de passe", e);
+        }
+    }
+}

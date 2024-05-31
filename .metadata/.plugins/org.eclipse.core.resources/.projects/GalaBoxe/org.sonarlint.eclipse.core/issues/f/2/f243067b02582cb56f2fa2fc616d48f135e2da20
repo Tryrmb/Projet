@@ -1,0 +1,120 @@
+
+u
+java:S1118":Add a private constructor to hide the implicit public one.8¾«¸Ìû1b 43743261495c76eb1a912cb8a9a914d9h
+e	java:S106"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106#"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106$"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106%"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106&"+Replace this use of System.out by a logger.8¾«¸Ìû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+¡
+java:S1192"fDefine a constant instead of duplicating this literal "    â€¢ Le jab (direct du bras avant)" 3 times.8¹îÙÑû1b bb66dc597d5713f8a521f03a65b6a85bh
+š
+java:S1192"_Define a constant instead of duplicating this literal "- Pour la notation des coups :" 3 times.8¹îÙÑû1b 4dca2cbf5287d9e7218b28a68484412fh
+ä
+java:S1192"¨Define a constant instead of duplicating this literal "    â€¢ Frapper votre adversaire sâ€™il.elle est au sol sur le ring ou sâ€™il.elle a un genou Ã  terre." 3 times.8¹îÙÑû1b 9f373022b79c482065c0a623688fcd74h
+§
+java:S1192"lDefine a constant instead of duplicating this literal "    â€¢ Uppercut / crochet visage +2 points" 3 times.8¹îÙÑû1b cc3fa48c318fbec5f4b1480f4182af8bh
+œ
+java:S1192"aDefine a constant instead of duplicating this literal "- Clinch autorisÃ©s (accrochage)" 3 times.8¹îÙÑû1b 2ddddfc5f910a7b81781cf67aabe094dh
+ä
+java:S1192"¨Define a constant instead of duplicating this literal "    â€¢ Frapper avec lâ€™intÃ©rieur de votre gant, votre poignet, le revers ou le cÃ´tÃ© de votre main." 3 times.8¹îÙÑû1b 453fcb2d2f4014044e169f979d67d491h
+š
+java:S1192"_Define a constant instead of duplicating this literal "    â€¢ Crochet foie +2 points" 3 times.8¹îÙÑû1b 52ec06bbce287babdd0e2ad2d0a9170bh
+’
+java:S1192"WDefine a constant instead of duplicating this literal "    â€¢ Dans les reins" 3 times.8¹îÙÑû1b 96a791c27650414a001dfdacf307ea24h
+¹
+java:S1192"~Define a constant instead of duplicating this literal "    â€¢ Autres coups dans les autres parties du corps 1 point" 3 times.8¹îÙÑû1b db83188b127c177ef80d3ae32b7b1c64h
+–
+java:S1192"[Define a constant instead of duplicating this literal "    â€¢ Les crochets/hooks" 3 times.8¹îÙÑû1b d7380b70c0335d3c3d96e7887db2ede9h
+¦
+java:S1192"kDefine a constant instead of duplicating this literal "    â€¢ Le cross (direct du bras arriÃ¨re)" 3 times.8¹îÙÑû1b 9da9799ebf56d4889c470f7d75789642h
+¶
+java:S1192"{Define a constant instead of duplicating this literal "- En boxe anglaise les coups interdits sont ceux portÃ©s :" 3 times.8¹îÙÑû1b 2b8424ebe628b1bf71eb6135c4fca1a2h
+°
+java:S1192
+"uDefine a constant instead of duplicating this literal "- Pas le droit de baisser la tÃªte sous la ceinture." 3 times.8¹îÙÑû1b 26218eb83754ec4d066a7444fc18e209h
+”
+java:S1192"YDefine a constant instead of duplicating this literal "    â€¢ Sous la ceinture" 3 times.8¹îÙÑû1b 6d6de5b884cc456ecb7cba2e7ecb7c74h
+‘
+java:S1192"VDefine a constant instead of duplicating this literal "    â€¢ Les uppercuts" 3 times.8¹îÙÑû1b 79100b5c5b36749e7e7cfc630885ecc8h
+ 
+java:S1192"eDefine a constant instead of duplicating this literal "    â€¢ Dans la nuque et dans le cou" 3 times.8¹îÙÑû1b 9c9e6ee49d00b830f175395e09f9b73fh
+
+java:S1192"bDefine a constant instead of duplicating this literal "    â€¢ Uppercut plexus +2 points" 3 times.8¹îÙÑû1b 4b3cc40b36ec10b065ba479b1a53d7d2h
+¦
+java:S1192"kDefine a constant instead of duplicating this literal "- Vous nâ€™avez pas non plus le droit de :" 3 times.8¹îÙÑû1b c60338150f9ee1435f16a3c2bafc1fefh
+
+java:S1192"TDefine a constant instead of duplicating this literal "    â€¢ Dans le dos" 3 times.8¹îÙÑû1b 133c636deb0e0ca82fb57edb530e6a79h
+
+java:S1192"UDefine a constant instead of duplicating this literal "- Coups autorisÃ©s :" 3 times.8¹îÙÑû1b 01693b1f4b3d6e3decfecd894ca26a45h
+«
+java:S1192"pDefine a constant instead of duplicating this literal "    â€¢ Mordre ou cracher sur votre opposant.e." 3 times.8¹îÙÑû1b c8cb23edc3805ba919b3d7f7fc88c6eah
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106!"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106""+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106'"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106("+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106)"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106*"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106."+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106/"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1060"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1061"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1062"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1063"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1064"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1065"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1066"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1067"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S1068"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106	"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106
+"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106;"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106<"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106="+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106>"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106?"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106@"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106A"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106B"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106C"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106D"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106E"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106I"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106J"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106K"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106L"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106M"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106N"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106O"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106P"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106Q"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106R"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106U"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106+"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106,"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106-"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106F"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106G"+Replace this use of System.out by a logger.8¹îÙÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106H"+Replace this use of System.out by a logger.8ÇêÓû1b bb1c3f2ea781263d3a2bb92b06a2061fh

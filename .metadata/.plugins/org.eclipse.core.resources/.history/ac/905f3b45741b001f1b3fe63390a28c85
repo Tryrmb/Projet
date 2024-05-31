@@ -1,0 +1,10 @@
+package Services;
+
+import presentation.Combattant;
+import Except.CombattantException;
+
+public interface GestionCombattant {
+    void ajouterCombattant(Combattant combattant);
+    void supprimerCombattant(Combattant combattant);
+    void modifierCombattant(Combattant combattant) throws CombattantException;
+}

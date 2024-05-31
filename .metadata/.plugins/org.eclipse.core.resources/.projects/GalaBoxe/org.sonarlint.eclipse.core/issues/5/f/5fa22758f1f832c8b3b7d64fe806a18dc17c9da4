@@ -1,0 +1,87 @@
+
+	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.b a02c83a7dbd96295beaefb72c2bee2deh
+e	java:S106"+Replace this use of System.out by a logger.8àíØÿú1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8àíØÿú1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8àíØÿú1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8àíØÿú1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106J"+Replace this use of System.out by a logger.8¥Ô¬û1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8Ùï§®û1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106>"+Replace this use of System.out by a logger.8Ùï§®û1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106"+Replace this use of System.out by a logger.8Ùï§®û1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106 "+Replace this use of System.out by a logger.8Ùï§®û1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106!"+Replace this use of System.out by a logger.8“Íë´û1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106""+Replace this use of System.out by a logger.8“Íë´û1b bb1c3f2ea781263d3a2bb92b06a2061fh
+ƒ
+java:S1192ê"GDefine a constant instead of duplicating this literal "11-1-0" 3 times.8áæ·Èû1b 8086d6bd1c0a06308151ecc6b9c6b691h
+‚
+java:S1192ñ"FDefine a constant instead of duplicating this literal "8-3-1" 3 times.8áæ·Èû1b 5b90c34e21acac397494d350d999886dh
+ƒ
+java:S1192á"GDefine a constant instead of duplicating this literal "10-3-0" 3 times.8áæ·Èû1b 0219a5e14abaeec53adc8933dd0ce6a9h
+ƒ
+java:S1192ß"GDefine a constant instead of duplicating this literal "11-2-0" 3 times.8áæ·Èû1b 989ce44c7cf8db2f1ba416baaf80fcabh
+‚
+java:S1192ö"FDefine a constant instead of duplicating this literal "9-4-0" 3 times.8áæ·Èû1b e721a11fdf61f16e4ab8032407bfc5aah
+ƒ
+java:S1192‚"GDefine a constant instead of duplicating this literal "10-1-0" 3 times.8áæ·Èû1b 10a345441d85e12c84e9801e7ff03177h
+‚
+java:S1192û"FDefine a constant instead of duplicating this literal "9-3-1" 4 times.8áæ·Èû1b 11919c12f1cb0f131b907bc56ce299abh
+‚
+java:S1192à"FDefine a constant instead of duplicating this literal "8-4-0" 3 times.8áæ·Èû1b 48c47158408d7facd11dfa22be512ab5h
+ƒ
+java:S1192ğ"GDefine a constant instead of duplicating this literal "10-2-0" 4 times.8áæ·Èû1b e27c0d81d55faba997a0907cadcab5bch
+‚
+java:S1192"FDefine a constant instead of duplicating this literal "9-2-0" 3 times.8áæ·Èû1b 2db956748a5477cacc83f2adcbc7aea1h
+‚
+java:S1192•"FDefine a constant instead of duplicating this literal "6-1-0" 9 times.8ÆµÌÉû1b 3da9a8f649b2fcf92c2f744b284c841eh
+ƒ
+java:S1192Ğ"GDefine a constant instead of duplicating this literal "3-3-0" 14 times.8ÆµÌÉû1b b90f3ef584ce0662ab1b86083e48b6c4h
+‚
+java:S1192Ì"FDefine a constant instead of duplicating this literal "6-0-0" 5 times.8ÆµÌÉû1b 67fb29eab38bc4d3d746ef48881999aeh
+‚
+java:S1192”"FDefine a constant instead of duplicating this literal "5-2-0" 9 times.8ÆµÌÉû1b d51f2c697f44384f7dc19d08819a9ad9h
+ƒ
+java:S1192¢"GDefine a constant instead of duplicating this literal "4-2-0" 17 times.8ÆµÌÉû1b 9884a91b49dfd48acc84af49ba18e8d3h
+ƒ
+java:S1192"GDefine a constant instead of duplicating this literal "5-1-0" 17 times.8ÆµÌÉû1b 55f31497f570aa4f42e307dd666299e8h
+‚
+java:S1192Ó"FDefine a constant instead of duplicating this literal "4-3-0" 9 times.8ÆµÌÉû1b 3fea9717912e8c00a47b659b7ef25aebh
+ƒ
+java:S1192ı"GDefine a constant instead of duplicating this literal "12-3-0" 3 times.8ÆµÌÉû1b 3e1a6c40ea70f60b989ffb5dd6a823f6h
+e	java:S106#"+Replace this use of System.out by a logger.8ÆµÌÉû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106$"+Replace this use of System.out by a logger.8ÆµÌÉû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106%"+Replace this use of System.out by a logger.8ÆµÌÉû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106&"+Replace this use of System.out by a logger.8ÆµÌÉû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106N"+Replace this use of System.out by a logger.8ÆµÌÉû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+Š
+java:S1192"NDefine a constant instead of duplicating this literal "Laura Lefevre" 3 times.8ô¤èÊû1b 99f550914d63651a1256abde8165d168h
+‰
+java:S1192œ"MDefine a constant instead of duplicating this literal "Sarah Dupont" 3 times.8ô¤èÊû1b 6f75a95ce3c84b1ee7a94e49adfe1c4dh
+ƒ
+java:S1192¦"GDefine a constant instead of duplicating this literal "27-3-1" 3 times.8ô¤èÊû1b 2aaf3565a65aee8ac02e2cb05ba815aeh
+‰
+java:S1192â"MDefine a constant instead of duplicating this literal "Julie Moreau" 3 times.8ô¤èÊû1b 11970fd014cc8f898602d858a12d7c9ah
+e	java:S106H"+Replace this use of System.out by a logger.8š·ÔÌû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106V"+Replace this use of System.out by a logger.8š·ÔÌû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106X"+Replace this use of System.out by a logger.8š·ÔÌû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106["+Replace this use of System.out by a logger.8š·ÔÌû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106]"+Replace this use of System.out by a logger.8š·ÔÌû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106a"+Replace this use of System.out by a logger.8š·ÔÌû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106l"+Replace this use of System.out by a logger.8³»ôÌû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106o"+Replace this use of System.out by a logger.8Ï•ıÑû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+e	java:S106i"+Replace this use of System.out by a logger.8§é¢Óû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106‡"+Replace this use of System.out by a logger.8§é¢Óû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106“"+Replace this use of System.out by a logger.8§é¢Óû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106•"+Replace this use of System.out by a logger.8§é¢Óû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106"+Replace this use of System.out by a logger.8§é¢Óû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106³"+Replace this use of System.out by a logger.8éà¬Ûû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106½"+Replace this use of System.out by a logger.8éà¬Ûû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106¾"+Replace this use of System.out by a logger.8éà¬Ûû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106¿"+Replace this use of System.out by a logger.8éà¬Ûû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106À"+Replace this use of System.out by a logger.8éà¬Ûû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106Á"+Replace this use of System.out by a logger.8éà¬Ûû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106Â"+Replace this use of System.out by a logger.8éà¬Ûû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+f	java:S106Ô"+Replace this use of System.out by a logger.8éà¬Ûû1b bb1c3f2ea781263d3a2bb92b06a2061fh
+‡	java:S101
+"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.8ÄçÍŞû1b fad58de7366495db4650cfefac2fcd61h
+‡
+java:S1223"LRename this method to prevent any misunderstanding or make it a constructor.8ÄçÍŞû1b fad58de7366495db4650cfefac2fcd61h

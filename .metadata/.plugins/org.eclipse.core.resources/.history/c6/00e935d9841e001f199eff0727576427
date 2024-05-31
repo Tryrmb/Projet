@@ -1,0 +1,371 @@
+package Main;
+
+import Controller.CombattantController;
+import Controller.TournoiController;
+import Services.DataAccesObject;
+import Services.GestionSportif;
+import presentation.*;
+import java.util.List;
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        CombattantController combattantController = new CombattantController();
+        TournoiController tournoiController = new TournoiController();
+        GestionSportif gestionSportif = new GestionSportif();
+
+        System.out.println("*************************************");
+        System.out.println("*  Bienvenue au Championnat         *");
+        System.out.println("*          d'Occitanie !            *");
+        System.out.println("*************************************");
+
+        ajouterTousLesCombattants(combattantController);
+
+        List<Combattant> combattants = combattantController.getCombattants();
+        tournoiController.sauvegarderCombattants(combattants);
+
+        Scanner scanner = new Scanner(System.in);
+        boolean continuer = true;
+
+        while (continuer) {
+            System.out.println("-------------------------------------");
+            System.out.println("Menu:");
+            System.out.println("1. Créer un tournoi");
+            System.out.println("2. Voir le contenu d'un combattant");
+            System.out.println("3. Voir l'avancement du tournoi");
+            System.out.println("4. Quitter");
+            System.out.println("5. Voir les règles");
+            System.out.println("6. Mettre à jour les informations personnelles");
+            System.out.println("7. Ajouter une performance");
+            System.out.println("8. Ajouter les détails d'un combat");
+            System.out.println("9. Calculer le pourcentage de réussite");
+            System.out.print("Choisissez une option: ");
+            int choix = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choix) {
+                case 1:
+                    creerTournoi(scanner, tournoiController, combattantController);
+                    break;
+                case 2:
+                    voirContenuCombattant(scanner, combattantController);
+                    break;
+                case 3:
+                    voirAvancementTournoi(scanner, tournoiController, combattantController);
+                    break;
+                case 4:
+                    continuer = false;
+                    break;
+                case 5:
+                    afficherRegles(scanner);
+                    break;
+                case 6:
+                    mettreAJourInfosPersonnelles(scanner, gestionSportif, combattantController);
+                    break;
+                case 7:
+                    ajouterPerformance(scanner);
+                    break;
+                case 8:
+                    ajouterDetailsCombat(scanner);
+                    break;
+                case 9:
+                    calculerPourcentageReussite(scanner);
+                    break;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static void mettreAJourInfosPersonnelles(Scanner scanner, GestionSportif gestionSportif, CombattantController combattantController) {
+        boolean retour = false;
+        while (!retour) {
+            System.out.println("Entrez votre nom d'utilisateur:");
+            String nomUtilisateur = scanner.nextLine();
+            System.out.println("Entrez votre mot de passe:");
+            String motDePasse = scanner.nextLine();
+
+            if (gestionSportif.verifierIdentite(nomUtilisateur, motDePasse)) {
+                System.out.println("Entrez le nom du combattant:");
+                String nomCombattant = scanner.nextLine();
+                Combattant combattant = combattantController.getCombattants().stream()
+                        .filter(c -> c.getNom().equalsIgnoreCase(nomCombattant))
+                        .findFirst()
+                        .orElse(null);
+
+                if (combattant != null) {
+                    System.out.println("Quel champ voulez-vous mettre à jour? (poids, taille, palmares, club)");
+                    String champ = scanner.nextLine();
+                    System.out.println("Entrez la nouvelle valeur:");
+                    String nouvelleValeur = scanner.nextLine();
+                    gestionSportif.mettreAJourInfo(combattant, champ, nouvelleValeur);
+                    System.out.println("Informations mises à jour avec succès.");
+                } else {
+                    System.out.println("Combattant non trouvé.");
+                }
+                retour = true;
+            } else {
+                System.out.println("Identifiants incorrects. Veuillez réessayer.");
+            }
+        }
+    }
+
+    private static void creerTournoi(Scanner scanner, TournoiController tournoiController, CombattantController combattantController) {
+        System.out.println("Entrez la catégorie de poids:");
+        String categoriePoids = scanner.nextLine().toUpperCase().replace(" ", "_");
+
+        System.out.println("Entrez le sexe (HOMME/FEMME):");
+        Sexe sexe = Sexe.valueOf(scanner.nextLine().toUpperCase());
+
+        System.out.println("Entrez le niveau (DEBUTANT/AMATEUR/PROFESSIONNEL):");
+        Niveau niveau = Niveau.valueOf(scanner.nextLine().toUpperCase());
+
+        Tournoi tournoi = tournoiController.creerTournoi(categoriePoids, sexe, niveau);
+
+        for (Combattant combattant : combattantController.getCombattants()) {
+            tournoi.ajouterCombattant(combattant);
+        }
+
+        tournoi.planifierCombats();
+        tournoi.afficherTableau();
+        tournoiController.enregistrerResultats(tournoi);
+        tournoi.afficherResultats();
+        tournoi.afficherClassement();
+        tournoi.attribuerRecompenses();
+    }
+
+    private static void voirContenuCombattant(Scanner scanner, CombattantController combattantController) {
+        boolean retour = false;
+        while (!retour) {
+            System.out.println("Entrez le nom du combattant (ou 'retour' pour revenir):");
+            String nomCombattant = scanner.nextLine();
+
+            if (nomCombattant.equalsIgnoreCase("retour")) {
+                retour = true;
+            } else {
+                Combattant combattant = combattantController.getCombattants().stream()
+                        .filter(c -> c.getNom().equalsIgnoreCase(nomCombattant))
+                        .findFirst()
+                        .orElse(null);
+
+                if (combattant != null) {
+                    System.out.println(combattant.afficherCaracteristiques());
+                } else {
+                    System.out.println("Combattant non trouvé.");
+                }
+            }
+        }
+    }
+
+    private static void voirAvancementTournoi(Scanner scanner, TournoiController tournoiController, CombattantController combattantController) {
+        boolean retour = false;
+        while (!retour) {
+            System.out.println("Entrez la catégorie de poids, le sexe et le niveau du tournoi (ou 'retour' pour revenir):");
+            String tournoiInfo = scanner.nextLine().toUpperCase().replace(" ", "_");
+
+            if (tournoiInfo.equalsIgnoreCase("RETOUR")) {
+                retour = true;
+            } else {
+                String[] parts = tournoiInfo.split("_");
+                if (parts.length == 3) {
+                    String categoriePoids = parts[0];
+                    Sexe sexe = Sexe.valueOf(parts[1]);
+                    Niveau niveau = Niveau.valueOf(parts[2]);
+
+                    Tournoi tournoiEnCours = tournoiController.creerTournoi(categoriePoids, sexe, niveau);
+                    for (Combattant c : combattantController.getCombattants()) {
+                        tournoiEnCours.ajouterCombattant(c);
+                    }
+                    tournoiEnCours.planifierCombats();
+                    tournoiEnCours.afficherTableau();
+                    tournoiEnCours.afficherResultats();
+                    tournoiEnCours.afficherClassement();
+                } else {
+                    System.out.println("Format de tournoi invalide. Veuillez réessayer.");
+                }
+            }
+        }
+    }
+
+    private static void afficherRegles(Scanner scanner) {
+        boolean retour = false;
+
+        while (!retour) {
+            System.out.println("Choisissez le niveau des règles à afficher :");
+            System.out.println("1. Professionnelle");
+            System.out.println("2. Amateur");
+            System.out.println("3. Débutant");
+            System.out.println("4. Retour");
+            System.out.print("Votre choix: ");
+            int choix = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choix) {
+                case 1:
+                    ReglesTournoi.afficherRegles(Niveau.PROFESSIONNEL);
+                    break;
+                case 2:
+                    ReglesTournoi.afficherRegles(Niveau.AMATEUR);
+                    break;
+                case 3:
+                    ReglesTournoi.afficherRegles(Niveau.DEBUTANT);
+                    break;
+                case 4:
+                    retour = true;
+                    break;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
+        }
+    }
+
+    private static void ajouterPerformance(Scanner scanner) {
+        System.out.println("Entrez l'ID du combattant:");
+        String id = scanner.nextLine();
+        System.out.println("Entrez le nom de l'adversaire:");
+        String adversaire = scanner.nextLine();
+        System.out.println("Entrez la date du combat (YYYY-MM-DD):");
+        String date = scanner.nextLine();
+        System.out.println("Entrez le résultat (victoire, défaite, nul):");
+        String resultat = scanner.nextLine();
+        System.out.println("Entrez le type de victoire (KO, TKO, points):");
+        String typeVictoire = scanner.nextLine();
+        DataAccesObject.addPerformance("performances.csv", id, adversaire, date, resultat, typeVictoire);
+    }
+
+    private static void ajouterDetailsCombat(Scanner scanner) {
+        System.out.println("Entrez l'ID du combattant:");
+        String id = scanner.nextLine();
+        System.out.println("Entrez le nombre de coups réussis:");
+        String coupsReussis = scanner.nextLine();
+        System.out.println("Entrez le nombre de coups manqués:");
+        String coupsManques = scanner.nextLine();
+        System.out.println("Entrez les types de coups (séparés par des virgules):");
+        String typesCoups = scanner.nextLine();
+        System.out.println("Entrez les zones touchées (séparées par des virgules):");
+        String zonesTouchees = scanner.nextLine();
+        DataAccesObject.addCombatDetails("combats.csv", id, coupsReussis, coupsManques, typesCoups, zonesTouchees);
+    }
+
+    private static void calculerPourcentageReussite(Scanner scanner) {
+        System.out.println("Entrez l'ID du combattant:");
+        String id = scanner.nextLine();
+        double percentage = DataAccesObject.calculatePercentages("combats.csv", id);
+        System.out.println("Pourcentage de coups réussis: " + percentage + "%");
+    }
+
+    private static void ajouterTousLesCombattants(CombattantController combattantController) {
+        ajouterCombattantsPoidsMoyensHommeAmateur(combattantController);
+        ajouterCombattantsPoidsLourdsHommeAmateur(combattantController);
+        ajouterCombattantsPoidsMoyensFemmeAmateur(combattantController);
+        ajouterCombattantsPoidsPlumeFemmeAmateur(combattantController);
+        ajouterCombattantsPoidsMiLourdsFemmeAmateur(combattantController);
+        ajouterCombattantsPoidsMouchesFemmeAmateur(combattantController);
+        ajouterCombattantsPoidsCoqDebutantHomme(combattantController);
+        ajouterCombattantsPoidsLegersHommeDebutant(combattantController);
+        ajouterCombattantsPoidsMoyensHommeDebutant(combattantController);
+        ajouterCombattantsPoidsLegersFemmeDebutant(combattantController);
+        ajouterCombattantsPoidsCoqFemmeDebutant(combattantController);
+        ajouterCombattantsSuperLegersAmateurHomme(combattantController);
+        ajouterCombattantsPoidsLourdHommePro(combattantController);
+        ajouterCombattantsPoidsLegerHommePro(combattantController);
+        ajouterCombattantsPoidsWeltersHommePro(combattantController);
+        ajouterCombattantsPoidsMoucheFemmePro(combattantController);
+        ajouterCombattantsPoidsPlumeFemmePro(combattantController);
+        ajouterCombattantsPoidsMoyensFemmePro(combattantController);
+    }
+
+	private static void ajouterCombattantsPoidsMoyensFemmePro(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsPlumeFemmePro(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsMoucheFemmePro(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsWeltersHommePro(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsLegerHommePro(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsLourdHommePro(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsSuperLegersAmateurHomme(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsCoqFemmeDebutant(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsLegersFemmeDebutant(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsMoyensHommeDebutant(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsLegersHommeDebutant(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsCoqDebutantHomme(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsMouchesFemmeAmateur(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsMiLourdsFemmeAmateur(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsMoyensFemmeAmateur(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsPlumeFemmeAmateur(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsLourdsHommeAmateur(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void ajouterCombattantsPoidsMoyensHommeAmateur(CombattantController combattantController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+}

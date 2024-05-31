@@ -1,0 +1,307 @@
+package Main;
+
+import Controller.CombattantController;
+import Controller.TournoiController;
+import presentation.*;
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        CombattantController combattantController = new CombattantController();
+        TournoiController tournoiController = new TournoiController();
+
+        // Message d'accueil
+        while (true) {
+            System.out.println("Bienvenue au Championnat d'Occitanie !");
+            System.out.println("Quel championnat voulez-vous ? (exemple : 'POIDS_MOYENS HOMME AMATEUR' ou 'POIDS_MOUCHES FEMME AMATEUR' ou 'POIDS_LOURDS HOMME AMATEUR' ou 'POIDS_MOYENS FEMME AMATEUR' ou 'POIDS_PLUME HOMME AMATEUR' ou 'POIDS_PLUME FEMME AMATEUR' ou 'POIDS_MI_LOURDS FEMME AMATEUR')");
+            String championnat = scanner.nextLine();
+            String[] parts = championnat.split(" ");
+            if (parts.length != 3) {
+                System.out.println("Entrée invalide. Veuillez entrer au format 'Categorie Sexe Niveau'");
+                continue;
+            }
+            String categorie = parts[0];
+            Sexe sexe = Sexe.valueOf(parts[1].toUpperCase());
+            Niveau niveau = Niveau.valueOf(parts[2].toUpperCase());
+
+            // Création du tournoi
+            Tournoi tournoi = tournoiController.creerTournoi(categorie, sexe, niveau);
+
+            if (categorie.equalsIgnoreCase("POIDS_MOYENS") && sexe == Sexe.HOMME && niveau == Niveau.AMATEUR) {
+                // Ajout de 16 combattants en poids moyens, homme, amateur
+                ajouterCombattantsPoidsMoyensHommeAmateur(combattantController);
+            } else if (categorie.equalsIgnoreCase("POIDS_MOUCHES") && sexe == Sexe.FEMME && niveau == Niveau.AMATEUR) {
+                // Ajout de 16 combattants en poids mouche, femme, amateur
+                ajouterCombattantsPoidsMouchesFemmeAmateur(combattantController);
+            } else if (categorie.equalsIgnoreCase("POIDS_LOURDS") && sexe == Sexe.HOMME && niveau == Niveau.AMATEUR) {
+                // Ajout de 16 combattants en poids lourds, homme, amateur
+                ajouterCombattantsPoidsLourdsHommeAmateur(combattantController);
+            } else if (categorie.equalsIgnoreCase("POIDS_MOYENS") && sexe == Sexe.FEMME && niveau == Niveau.AMATEUR) {
+                // Ajout de 16 combattants en poids moyens, femme, amateur
+                ajouterCombattantsPoidsMoyensFemmeAmateur(combattantController);
+            } else if (categorie.equalsIgnoreCase("POIDS_PLUME") && sexe == Sexe.FEMME && niveau == Niveau.AMATEUR) {
+                // Ajout de 16 combattants en poids plume, femme, amateur
+                ajouterCombattantsPoidsPlumeFemmeAmateur(combattantController);
+            } else if (categorie.equalsIgnoreCase("POIDS_MI_LOURDS") && sexe == Sexe.FEMME && niveau == Niveau.AMATEUR) {
+                // Ajout de 16 combattants en poids mi-lourds, femme, amateur
+                ajouterCombattantsPoidsMiLourdsFemmeAmateur(combattantController);
+            }
+
+            // Ajout des combattants au tournoi
+            for (Combattant combattant : combattantController.getCombattants()) {
+                tournoi.ajouterCombattant(combattant);
+            }
+
+            while (true) {
+                System.out.println("\nMenu:");
+                System.out.println("1) Voir le contenu d'un combattant");
+                System.out.println("2) Voir l'avancement du tournoi");
+                System.out.println("3) Quitter");
+                String choix = scanner.nextLine();
+
+                if (choix.equals("1")) {
+                    System.out.println("Entrez le nom du combattant:");
+                    String nom = scanner.nextLine();
+                    Combattant combattant = combattantController.getCombattants().stream()
+                            .filter(c -> c.getNom().equalsIgnoreCase(nom))
+                            .findFirst()
+                            .orElse(null);
+
+                    if (combattant != null) {
+                        System.out.println(combattant.afficherCaracteristiques());
+                    } else {
+                        System.out.println("Combattant non trouvé.");
+                    }
+                } else if (choix.equals("2")) {
+                    tournoi.planifierCombats();
+                    tournoi.afficherTableau();
+                    tournoiController.enregistrerResultats(tournoi);
+                    tournoi.afficherResultats();
+                    tournoi.afficherClassement();
+                } else if (choix.equals("3")) {
+                    break;
+                } else {
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+                }
+            }
+        }
+    }
+
+    private static void ajouterCombattantsPoidsMoyensHommeAmateur(CombattantController combattantController) {
+        Combattant combattant1 = new Combattant("John Berger", 180, 75, "10-2-0", Sexe.HOMME, Club.NOBLEARTPEPIEUXOIS, 90, 85, 80, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant2 = new Combattant("Maxime Thomas", 175, 70, "8-3-1", Sexe.HOMME, Club.BCNARBONNAIS, 85, 80, 90, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant3 = new Combattant("Brice Morvant", 185, 80, "20-0-0", Sexe.HOMME, Club.NIMESBOXE, 95, 90, 88, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant4 = new Combattant("Theo Victor", 178, 72, "15-1-0", Sexe.HOMME, Club.CARCASSONNEBOXING, 90, 85, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant5 = new Combattant("Mamadou Diallo", 182, 78, "12-2-0", Sexe.HOMME, Club.BCARIEGEOIS, 88, 84, 82, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant6 = new Combattant("Medhi Bekhal", 180, 75, "10-3-1", Sexe.HOMME, Club.BOXINGCLUBALESIEN, 92, 88, 87, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant7 = new Combattant("Jonas Michel", 175, 70, "9-4-0", Sexe.HOMME, Club.CAHORSBOXE, 85, 82, 80, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant8 = new Combattant("Victor Mbemba", 185, 80, "14-2-0", Sexe.HOMME, Club.BCTOULOUSAIN, 91, 89, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant9 = new Combattant("Jerry Allen", 178, 72, "11-3-0", Sexe.HOMME, Club.SPORTINGBOXECUGNAUX, 90, 86, 84, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant10 = new Combattant("Arthur Gomez", 182, 78, "13-1-0", Sexe.HOMME, Club.BLAGNACBOXINGCLUB, 89, 87, 83, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant11 = new Combattant("Victor SainPetrier", 180, 75, "10-4-0", Sexe.HOMME, Club.BOXINGCLUBBAGATELLE, 88, 85, 82, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant12 = new Combattant("Oliver Courtois", 175, 70, "9-3-1", Sexe.HOMME, Club.BOXINGCLUBROQUETTOIS, 87, 84, 81, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant13 = new Combattant("Ali Pasquier", 185, 80, "15-1-0", Sexe.HOMME, Club.BOXINGCLUBAUTERIVAIN, 92, 89, 88, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant14 = new Combattant("Jean Bosco", 178, 72, "12-3-0", Sexe.HOMME, Club.BOXINGCLUBMURET, 89, 86, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant15 = new Combattant("Thomas Guiraud", 182, 78, "14-2-0", Sexe.HOMME, Club.SAINTLYSOLYMPIQUEBOXE, 91, 87, 84, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+        Combattant combattant16 = new Combattant("Leo Jallet", 180, 75, "11-4-0", Sexe.HOMME, Club.BOXINGCENTERTOULOUSE, 90, 85, 82, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_MOYENS, null);
+
+        combattantController.ajouterCombattant(combattant1);
+        combattantController.ajouterCombattant(combattant2);
+        combattantController.ajouterCombattant(combattant3);
+        combattantController.ajouterCombattant(combattant4);
+        combattantController.ajouterCombattant(combattant5);
+        combattantController.ajouterCombattant(combattant6);
+        combattantController.ajouterCombattant(combattant7);
+        combattantController.ajouterCombattant(combattant8);
+        combattantController.ajouterCombattant(combattant9);
+        combattantController.ajouterCombattant(combattant10);
+        combattantController.ajouterCombattant(combattant11);
+        combattantController.ajouterCombattant(combattant12);
+        combattantController.ajouterCombattant(combattant13);
+        combattantController.ajouterCombattant(combattant14);
+        combattantController.ajouterCombattant(combattant15);
+        combattantController.ajouterCombattant(combattant16);
+    }
+
+    private static void ajouterCombattantsPoidsMouchesFemmeAmateur(CombattantController combattantController) {
+        Combattant combattante1 = new Combattant("Marie Dubois", 160, 48, "5-2-0", Sexe.FEMME, Club.BOXINGCLUBALESIEN, 85, 80, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante2 = new Combattant("Sophie Lambert", 162, 49, "6-1-0", Sexe.FEMME, Club.BLAGNACBOXINGCLUB, 88, 82, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante3 = new Combattant("Claire Martin", 158, 50, "7-0-1", Sexe.FEMME, Club.CAHORSBOXE, 90, 85, 80, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante4 = new Combattant("Julie Verne", 161, 51, "8-2-0", Sexe.FEMME, Club.BOXINGCLUBBAGATELLE, 87, 83, 79, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante5 = new Combattant("Anne Dupont", 163, 52, "9-1-0", Sexe.FEMME, Club.BCNARBONNAIS, 89, 84, 81, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante6 = new Combattant("Isabelle Leroy", 159, 50, "6-3-0", Sexe.FEMME, Club.BCARIEGEOIS, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante7 = new Combattant("Emilie Petit", 160, 49, "4-2-1", Sexe.FEMME, Club.CARCASSONNEBOXING, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante8 = new Combattant("Hélène Fournier", 161, 50, "5-3-0", Sexe.FEMME, Club.BCTOULOUSAIN, 86, 81, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante9 = new Combattant("Alice Brun", 159, 51, "3-4-0", Sexe.FEMME, Club.BOXINGCLUBAUTERIVAIN, 83, 78, 74, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante10 = new Combattant("Valerie Blanc", 162, 50, "6-2-1", Sexe.FEMME, Club.BOXINGCLUBMURET, 88, 82, 79, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante11 = new Combattant("Catherine Durant", 160, 48, "5-1-0", Sexe.FEMME, Club.NIMESBOXE, 87, 83, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante12 = new Combattant("Julie Dupre", 158, 49, "7-2-0", Sexe.FEMME, Club.BOXINGCENTERTOULOUSE, 89, 84, 80, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante13 = new Combattant("Lucie Dupuis", 161, 50, "6-1-1", Sexe.FEMME, Club.SPORTINGBOXECUGNAUX, 86, 81, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante14 = new Combattant("Sandrine Marchand", 163, 52, "8-0-0", Sexe.FEMME, Club.BOXINGCLUBEBAM, 90, 85, 81, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante15 = new Combattant("Elodie Laurent", 160, 48, "4-2-0", Sexe.FEMME, Club.BOXINGCLUBALESIEN, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+        Combattant combattante16 = new Combattant("Sophie Faure", 162, 51, "5-3-1", Sexe.FEMME, Club.BOXINGCLUBROQUETTOIS, 87, 82, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOUCHES);
+
+        combattantController.ajouterCombattant(combattante1);
+        combattantController.ajouterCombattant(combattante2);
+        combattantController.ajouterCombattant(combattante3);
+        combattantController.ajouterCombattant(combattante4);
+        combattantController.ajouterCombattant(combattante5);
+        combattantController.ajouterCombattant(combattante6);
+        combattantController.ajouterCombattant(combattante7);
+        combattantController.ajouterCombattant(combattante8);
+        combattantController.ajouterCombattant(combattante9);
+        combattantController.ajouterCombattant(combattante10);
+        combattantController.ajouterCombattant(combattante11);
+        combattantController.ajouterCombattant(combattante12);
+        combattantController.ajouterCombattant(combattante13);
+        combattantController.ajouterCombattant(combattante14);
+        combattantController.ajouterCombattant(combattante15);
+        combattantController.ajouterCombattant(combattante16);
+    }
+
+    private static void ajouterCombattantsPoidsLourdsHommeAmateur(CombattantController combattantController) {
+        Combattant combattant1 = new Combattant("Marc Durand", 190, 95, "15-3-0", Sexe.HOMME, Club.BOXINGCLUBALESIEN, 85, 90, 88, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant2 = new Combattant("Pierre Lefevre", 192, 98, "12-2-1", Sexe.HOMME, Club.BLAGNACBOXINGCLUB, 84, 89, 87, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant3 = new Combattant("Jean Martin", 195, 100, "18-1-0", Sexe.HOMME, Club.CAHORSBOXE, 86, 88, 89, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant4 = new Combattant("Luc Dupont", 193, 97, "13-4-0", Sexe.HOMME, Club.BOXINGCLUBBAGATELLE, 83, 87, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant5 = new Combattant("Nicolas Moreau", 191, 96, "14-2-1", Sexe.HOMME, Club.BCNARBONNAIS, 85, 86, 88, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant6 = new Combattant("Henri Robert", 194, 99, "10-5-0", Sexe.HOMME, Club.BCARIEGEOIS, 82, 85, 84, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant7 = new Combattant("Antoine Petit", 190, 95, "17-1-0", Sexe.HOMME, Club.CARCASSONNEBOXING, 87, 89, 86, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant8 = new Combattant("Louis Dubois", 192, 98, "16-2-0", Sexe.HOMME, Club.BCTOULOUSAIN, 85, 88, 87, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant9 = new Combattant("Alexandre Fournier", 195, 100, "11-3-1", Sexe.HOMME, Club.BOXINGCLUBAUTERIVAIN, 84, 86, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant10 = new Combattant("Victor Bernard", 193, 97, "13-4-0", Sexe.HOMME, Club.BOXINGCLUBMURET, 86, 87, 88, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant11 = new Combattant("Gérard Rousseau", 191, 96, "14-2-1", Sexe.HOMME, Club.NIMESBOXE, 85, 86, 84, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant12 = new Combattant("Philippe Girard", 194, 99, "12-3-0", Sexe.HOMME, Club.BOXINGCENTERTOULOUSE, 83, 85, 86, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant13 = new Combattant("Hugo Leroy", 190, 95, "16-1-0", Sexe.HOMME, Club.SPORTINGBOXECUGNAUX, 87, 88, 89, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant14 = new Combattant("Andre Morel", 192, 98, "15-2-0", Sexe.HOMME, Club.BOXINGCLUBEBAM, 84, 87, 88, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant15 = new Combattant("Emmanuel Laurent", 195, 100, "17-3-1", Sexe.HOMME, Club.BOXINGCLUBALESIEN, 85, 89, 87, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+        Combattant combattant16 = new Combattant("Charles Lefebvre", 193, 97, "12-4-0", Sexe.HOMME, Club.BOXINGCLUBROQUETTOIS, 83, 86, 85, Niveau.AMATEUR, CategoriePoidsHomme.POIDS_LOURDS, null);
+
+        combattantController.ajouterCombattant(combattant1);
+        combattantController.ajouterCombattant(combattant2);
+        combattantController.ajouterCombattant(combattant3);
+        combattantController.ajouterCombattant(combattant4);
+        combattantController.ajouterCombattant(combattant5);
+        combattantController.ajouterCombattant(combattant6);
+        combattantController.ajouterCombattant(combattant7);
+        combattantController.ajouterCombattant(combattant8);
+        combattantController.ajouterCombattant(combattant9);
+        combattantController.ajouterCombattant(combattant10);
+        combattantController.ajouterCombattant(combattant11);
+        combattantController.ajouterCombattant(combattant12);
+        combattantController.ajouterCombattant(combattant13);
+        combattantController.ajouterCombattant(combattant14);
+        combattantController.ajouterCombattant(combattant15);
+        combattantController.ajouterCombattant(combattant16);
+    }
+
+    private static void ajouterCombattantsPoidsMoyensFemmeAmateur(CombattantController combattantController) {
+        Combattant combattante1 = new Combattant("Emma Girard", 165, 72, "10-2-0", Sexe.FEMME, Club.NOBLEARTPEPIEUXOIS, 85, 80, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante2 = new Combattant("Olivia Durand", 168, 73, "9-3-1", Sexe.FEMME, Club.BCNARBONNAIS, 88, 82, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante3 = new Combattant("Sophia Moreau", 170, 74, "12-1-0", Sexe.FEMME, Club.NIMESBOXE, 90, 85, 80, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante4 = new Combattant("Ava Martin", 169, 75, "11-2-0", Sexe.FEMME, Club.CARCASSONNEBOXING, 87, 83, 79, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante5 = new Combattant("Isabella Petit", 167, 72, "8-4-0", Sexe.FEMME, Club.BCARIEGEOIS, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante6 = new Combattant("Mia Fournier", 166, 73, "10-3-0", Sexe.FEMME, Club.BOXINGCLUBALESIEN, 86, 81, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante7 = new Combattant("Amelia Blanc", 164, 72, "7-4-1", Sexe.FEMME, Club.CAHORSBOXE, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante8 = new Combattant("Charlotte Dupont", 168, 74, "9-3-0", Sexe.FEMME, Club.BCTOULOUSAIN, 87, 82, 79, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante9 = new Combattant("Harper Faure", 165, 75, "8-2-1", Sexe.FEMME, Club.SPORTINGBOXECUGNAUX, 86, 81, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante10 = new Combattant("Evelyn Richard", 167, 73, "10-1-1", Sexe.FEMME, Club.BOXINGCLUBAUTERIVAIN, 89, 84, 80, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante11 = new Combattant("Abigail Bernard", 169, 74, "11-2-0", Sexe.FEMME, Club.BLAGNACBOXINGCLUB, 88, 83, 79, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante12 = new Combattant("Ella Lefevre", 166, 72, "7-3-0", Sexe.FEMME, Club.BOXINGCLUBBAGATELLE, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante13 = new Combattant("Chloe Laurent", 165, 75, "9-4-0", Sexe.FEMME, Club.BCNARBONNAIS, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante14 = new Combattant("Grace Dupuis", 168, 73, "10-3-1", Sexe.FEMME, Club.BOXINGCLUBEBAM, 87, 82, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante15 = new Combattant("Zoe Marchand", 170, 74, "11-1-0", Sexe.FEMME, Club.BOXINGCLUBROQUETTOIS, 89, 84, 80, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+        Combattant combattante16 = new Combattant("Lily Morel", 164, 72, "6-4-0", Sexe.FEMME, Club.BOXINGCENTERTOULOUSE, 83, 78, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MOYENS);
+
+        combattantController.ajouterCombattant(combattante1);
+        combattantController.ajouterCombattant(combattante2);
+        combattantController.ajouterCombattant(combattante3);
+        combattantController.ajouterCombattant(combattante4);
+        combattantController.ajouterCombattant(combattante5);
+        combattantController.ajouterCombattant(combattante6);
+        combattantController.ajouterCombattant(combattante7);
+        combattantController.ajouterCombattant(combattante8);
+        combattantController.ajouterCombattant(combattante9);
+        combattantController.ajouterCombattant(combattante10);
+        combattantController.ajouterCombattant(combattante11);
+        combattantController.ajouterCombattant(combattante12);
+        combattantController.ajouterCombattant(combattante13);
+        combattantController.ajouterCombattant(combattante14);
+        combattantController.ajouterCombattant(combattante15);
+        combattantController.ajouterCombattant(combattante16);
+    }
+
+
+    private static void ajouterCombattantsPoidsPlumeFemmeAmateur(CombattantController combattantController) {
+        Combattant combattante1 = new Combattant("Louise Durand", 165, 54, "9-2-0", Sexe.FEMME, Club.NOBLEARTPEPIEUXOIS, 85, 80, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante2 = new Combattant("Chloé Richard", 163, 53, "10-1-0", Sexe.FEMME, Club.BCNARBONNAIS, 87, 83, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante3 = new Combattant("Camille Moreau", 164, 55, "8-3-1", Sexe.FEMME, Club.NIMESBOXE, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante4 = new Combattant("Jade Lefevre", 162, 54, "7-4-0", Sexe.FEMME, Club.CARCASSONNEBOXING, 82, 78, 74, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante5 = new Combattant("Alice Petit", 165, 54, "9-2-1", Sexe.FEMME, Club.BCARIEGEOIS, 86, 81, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante6 = new Combattant("Léa Dubois", 163, 55, "10-3-0", Sexe.FEMME, Club.BOXINGCLUBALESIEN, 87, 82, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante7 = new Combattant("Emma Martin", 164, 54, "8-2-1", Sexe.FEMME, Club.CAHORSBOXE, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante8 = new Combattant("Sophie Girard", 165, 54, "7-3-0", Sexe.FEMME, Club.BCTOULOUSAIN, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante9 = new Combattant("Elise Leroy", 162, 55, "9-1-0", Sexe.FEMME, Club.SPORTINGBOXECUGNAUX, 88, 83, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante10 = new Combattant("Manon Blanc", 163, 54, "10-2-1", Sexe.FEMME, Club.BOXINGCLUBAUTERIVAIN, 87, 82, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante11 = new Combattant("Juliette Dupuis", 164, 54, "8-3-0", Sexe.FEMME, Club.BLAGNACBOXINGCLUB, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante12 = new Combattant("Claire Morel", 165, 55, "9-2-0", Sexe.FEMME, Club.BOXINGCLUBBAGATELLE, 86, 81, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante13 = new Combattant("Gabrielle Durand", 163, 54, "7-4-1", Sexe.FEMME, Club.BCNARBONNAIS, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante14 = new Combattant("Mathilde Faure", 164, 55, "10-1-0", Sexe.FEMME, Club.BOXINGCLUBEBAM, 88, 83, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante15 = new Combattant("Lola Laurent", 165, 54, "8-2-0", Sexe.FEMME, Club.BOXINGCLUBROQUETTOIS, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+        Combattant combattante16 = new Combattant("Sarah Marchand", 162, 55, "9-3-1", Sexe.FEMME, Club.BOXINGCENTERTOULOUSE, 87, 82, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_PLUMES);
+
+        combattantController.ajouterCombattant(combattante1);
+        combattantController.ajouterCombattant(combattante2);
+        combattantController.ajouterCombattant(combattante3);
+        combattantController.ajouterCombattant(combattante4);
+        combattantController.ajouterCombattant(combattante5);
+        combattantController.ajouterCombattant(combattante6);
+        combattantController.ajouterCombattant(combattante7);
+        combattantController.ajouterCombattant(combattante8);
+        combattantController.ajouterCombattant(combattante9);
+        combattantController.ajouterCombattant(combattante10);
+        combattantController.ajouterCombattant(combattante11);
+        combattantController.ajouterCombattant(combattante12);
+        combattantController.ajouterCombattant(combattante13);
+        combattantController.ajouterCombattant(combattante14);
+        combattantController.ajouterCombattant(combattante15);
+        combattantController.ajouterCombattant(combattante16);
+    }
+
+    private static void ajouterCombattantsPoidsMiLourdsFemmeAmateur(CombattantController combattantController) {
+        Combattant combattante1 = new Combattant("Catherine Durand", 175, 79, "10-2-0", Sexe.FEMME, Club.NOBLEARTPEPIEUXOIS, 85, 80, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante2 = new Combattant("Amandine Richard", 177, 80, "11-1-0", Sexe.FEMME, Club.BCNARBONNAIS, 87, 83, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante3 = new Combattant("Nathalie Moreau", 176, 78, "9-3-1", Sexe.FEMME, Club.NIMESBOXE, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante4 = new Combattant("Isabelle Lefevre", 174, 77, "8-4-0", Sexe.FEMME, Club.CARCASSONNEBOXING, 82, 78, 74, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante5 = new Combattant("Sandrine Petit", 175, 79, "10-2-1", Sexe.FEMME, Club.BCARIEGEOIS, 86, 81, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante6 = new Combattant("Amélie Dubois", 177, 80, "11-3-0", Sexe.FEMME, Club.BOXINGCLUBALESIEN, 87, 82, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante7 = new Combattant("Sophie Martin", 174, 78, "9-2-0", Sexe.FEMME, Club.CAHORSBOXE, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante8 = new Combattant("Delphine Girard", 176, 77, "10-1-0", Sexe.FEMME, Club.BCTOULOUSAIN, 86, 81, 77, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante9 = new Combattant("Cécile Leroy", 175, 79, "8-3-1", Sexe.FEMME, Club.SPORTINGBOXECUGNAUX, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante10 = new Combattant("Nadine Blanc", 177, 80, "11-2-0", Sexe.FEMME, Club.BOXINGCLUBAUTERIVAIN, 87, 83, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante11 = new Combattant("Corinne Dupuis", 174, 77, "10-3-0", Sexe.FEMME, Club.BLAGNACBOXINGCLUB, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante12 = new Combattant("Sabrina Morel", 175, 79, "9-4-0", Sexe.FEMME, Club.BOXINGCLUBBAGATELLE, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante13 = new Combattant("Chantal Faure", 177, 80, "11-1-0", Sexe.FEMME, Club.BCNARBONNAIS, 88, 83, 78, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante14 = new Combattant("Lucie Laurent", 174, 77, "10-2-0", Sexe.FEMME, Club.BOXINGCLUBEBAM, 85, 80, 76, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante15 = new Combattant("Emilie Marchand", 176, 78, "9-3-0", Sexe.FEMME, Club.BOXINGCLUBROQUETTOIS, 84, 79, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+        Combattant combattante16 = new Combattant("Caroline Morel", 175, 79, "8-4-0", Sexe.FEMME, Club.BOXINGCENTERTOULOUSE, 83, 78, 75, Niveau.AMATEUR, null, CategoriePoidsFemme.POIDS_MI_LOURDS);
+
+        combattantController.ajouterCombattant(combattante1);
+        combattantController.ajouterCombattant(combattante2);
+        combattantController.ajouterCombattant(combattante3);
+        combattantController.ajouterCombattant(combattante4);
+        combattantController.ajouterCombattant(combattante5);
+        combattantController.ajouterCombattant(combattante6);
+        combattantController.ajouterCombattant(combattante7);
+        combattantController.ajouterCombattant(combattante8);
+        combattantController.ajouterCombattant(combattante9);
+        combattantController.ajouterCombattant(combattante10);
+        combattantController.ajouterCombattant(combattante11);
+        combattantController.ajouterCombattant(combattante12);
+        combattantController.ajouterCombattant(combattante13);
+        combattantController.ajouterCombattant(combattante14);
+        combattantController.ajouterCombattant(combattante15);
+        combattantController.ajouterCombattant(combattante16);
+    }
+}
